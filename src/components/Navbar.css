@@ -1,0 +1,286 @@
+/* ========== NAVIGATION BAR ========== */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+/* HOVER GLASS EFFECT – ONLY FOR DESKTOP */
+@media (min-width: 768px) {
+  .nav:hover {
+    background-color: #13406150;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 60px;
+    margin: 20px;
+    padding: 0px 30px;
+    box-shadow: 0 0px 14px var(--clr-900);
+  }
+
+  .nav:hover .logo {
+    background: linear-gradient(45deg, var(--clr-600), var(--clr-800));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav:hover .nav-links p {
+    color: var(--clr-900);
+  }
+}
+
+/* ========== LOGO ========== */
+.logo {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-right: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, var(--clr-800), var(--clr-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 0.5s ease;
+  z-index: 1102;
+}
+
+/* ========== NAV LINKS (DESKTOP) ========== */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links p {
+  margin: 0 25px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--clr-900);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links p::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(45deg, var(--clr-300), var(--clr-700));
+  transition: width 0.3s ease;
+}
+
+.nav-links p:hover::after {
+  width: 100%;
+}
+
+.nav-links p:hover {
+  color: var(--clr-500);
+  transform: scale(1);
+}
+
+/* ========== DROPDOWN ========== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  margin: 0 25px;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--clr-100);
+  cursor: pointer;
+  padding-bottom: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  opacity: 0.9;
+  background-color: var(--clr-100);
+  padding: 10px 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  min-width: 150px;
+  z-index: 1001;
+}
+
+.dropdown-menu p {
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  color: var(--clr-100);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu p:hover {
+  background-color: var(--clr-700);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* ========== MOBILE STYLES ========== */
+@media (max-width: 768px) {
+  .nav {
+    padding: 4px 30px;
+    margin: 0;
+    background: linear-gradient(90deg, var(--clr-500), var(--clr-900));
+    top: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav:hover {
+    /* remove hover effect on nav for mobile */
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 30px;
+    background: linear-gradient(90deg, var(--clr-500), var(--clr-900));
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 3rem;
+    margin-bottom: 22px;
+    background: linear-gradient(45deg, var(--clr-100), var(--clr-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1102;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1101;
+    position: absolute;
+    left: 12px;
+    top: 48px;
+  }
+
+  .hamburger-bar {
+    width: 28px;
+    height: 4px;
+    background: var(--clr-900, #222);
+    margin: 3px 0;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    height: calc(100vh - 80px);
+    width: 240px;
+    background: var(--clr-100, #fff);
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.15);
+    z-index: 1100;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--clr-900, #222);
+    cursor: pointer;
+    z-index: 1102;
+  }
+
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+  }
+
+  .sidebar-links p {
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0;
+    color: var(--clr-900, #222);
+  }
+
+  .sidebar-links .dropdown {
+    position: relative;
+  }
+
+  .sidebar-links .dropdown-toggle {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-links .dropdown-menu {
+    position: static;
+    background: none;
+    box-shadow: none;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Disable all hover effects on mobile */
+  .nav-links p:hover,
+  .sidebar-links p:hover,
+  .sidebar-links .dropdown-menu p:hover {
+    color: var(--clr-900, #222) !important;
+    background: none !important;
+    transform: none !important;
+  }
+
+  .nav-links p:hover::after,
+  .sidebar-links p:hover::after {
+    width: 0 !important;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none !important;
+  }
+}
+
+/* Hide sidebar/hamburger on desktop */
+@media (min-width: 768px) {
+  .sidebar,
+  .hamburger {
+    display: none !important;
+  }
+}
