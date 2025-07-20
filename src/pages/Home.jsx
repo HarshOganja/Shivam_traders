@@ -22,7 +22,7 @@ function Home() {
 
     window.addEventListener('resize', handleResize);
 
-    fetch("http://localhost:5000/api/Tiles_data")
+    fetch("https://shivam-traders.onrender.com/api/Tiles_data")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
